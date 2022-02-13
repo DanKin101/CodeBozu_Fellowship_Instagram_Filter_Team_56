@@ -1,0 +1,44 @@
+import cv2 as cv
+import numpy as np
+
+bozu = cv.imread("Media/Bozu.png")
+
+zeros = np.zeros(bozu.shape[:2], dtype="uint8")
+
+
+def reddify(img):
+    r, g, b = cv.split(img)
+    red_scale = cv.merge([zeros, zeros, r])
+    cv.imwrite("Del 1/Red_Bozu.jpg", red_scale)
+
+
+def greenify(img):
+    r, g, b = cv.split(img)
+    green_scale = cv.merge([zeros, g, zeros])
+    cv.imwrite("Del 1/Green_Bozu.jpg", green_scale)
+
+
+def blueify(img):
+    r, g, b = cv.split(img)
+    blue_scale = cv.merge([b, zeros, zeros])
+    cv.imwrite("Del 1/Blue_Bozu.jpg", blue_scale)
+
+
+def grayify(img):
+    r, g, b = cv.split(img)
+    gray = 0.299 * r + 0.587 * g + 0.114 * b
+    gray_scale = cv.merge([gray, gray, gray])
+    cv.imwrite("Del 1/Gray_Bozu.jpg", gray_scale)
+
+
+def negatify(img):
+    r, g, b = cv.split(img)
+    negative = cv.merge([255 - b, 255 - g, 255 - r])
+    cv.imwrite("Del 1/Negative_Bozu.jpg", negative)
+
+
+reddify(bozu)
+greenify(bozu)
+blueify(bozu)
+grayify(bozu)
+negatify(bozu)
